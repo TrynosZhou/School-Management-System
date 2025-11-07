@@ -1,0 +1,9 @@
+# Computer Science Test (0478)
+Class: 3 Blue
+Total Marks: 75 (assembled: 20)
+
+1. (5 marks) Sample question 1: Define an algorithm.
+
+2. (5 marks) Sample question 2: List two advantages of using pseudocode.
+
+3. (10 marks) Sample question 3: Explain the difference between compilation and interpretation.

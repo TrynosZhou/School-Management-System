@@ -1,0 +1,23 @@
+# Computer Science Test (CS-9618)
+Class: Upper 6 Sci
+Total Marks: 75 (assembled: 75)
+
+1. (5 marks) Plot the point P(−2, 3) on the Cartesian plane and reflect it in the y-axis. State the coordinates of the image.
+
+2. (10 marks) The ratio of boys to girls in a class is 3:5. If there are 24 girls, how many students are in the class?
+
+3. (10 marks) Construct a frequency table from the following scores: 4, 6, 6, 7, 8, 8, 8, 9, 10, 10.
+
+4. (10 marks) A shop gives a discount of 15% on a shirt marked at GH¢200. Find the selling price.
+
+5. (10 marks) Convert 0.375 to a fraction in simplest form.
+
+6. (5 marks) Evaluate: 3/4 + 5/6, giving your answer in simplest form.
+
+7. (5 marks) Find the area of a rectangle with length 12 cm and width 7 cm.
+
+8. (10 marks) Expand and simplify: (x + 2)(x − 5).
+
+9. (5 marks) Solve for x: 2(x - 3) = 10.
+
+10. (5 marks) Simplify: 3x + 5x - 2x.

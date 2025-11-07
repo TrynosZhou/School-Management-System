@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SchoolPro Backup Reminder</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        .container {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            max-width: 600px;
+            width: 100%;
+            padding: 40px;
+            text-align: center;
+        }
+        h1 {
+            color: #2d3748;
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+        .emoji {
+            font-size: 4rem;
+            margin: 20px 0;
+        }
+        .message {
+            color: #4a5568;
+            font-size: 1.2rem;
+            margin: 20px 0;
+            line-height: 1.6;
+        }
+        .last-backup {
+            background: #f7fafc;
+            border-left: 4px solid #4299e1;
+            padding: 15px;
+            margin: 20px 0;
+            text-align: left;
+        }
+        .last-backup strong {
+            color: #2d3748;
+        }
+        .buttons {
+            margin-top: 30px;
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        button {
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        button:hover {
+            background: #5a67d8;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+        }
+        button.secondary {
+            background: #48bb78;
+        }
+        button.secondary:hover {
+            background: #38a169;
+        }
+        .instructions {
+            background: #fff5f5;
+            border: 1px solid #fc8181;
+            border-radius: 10px;
+            padding: 20px;
+            margin-top: 20px;
+            text-align: left;
+        }
+        .instructions h3 {
+            color: #c53030;
+            margin-bottom: 10px;
+        }
+        .instructions ol {
+            margin-left: 20px;
+            color: #4a5568;
+        }
+        .instructions li {
+            margin: 8px 0;
+        }
+        code {
+            background: #edf2f7;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            color: #c53030;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="emoji">💾</div>
+        <h1>Backup Reminder!</h1>
+        <p class="message">
+            Don't forget to backup your SchoolPro database regularly.<br>
+            <strong>Your data is precious!</strong>
+        </p>
+        
+        <div class="last-backup">
+            <strong>Last backup check:</strong> <span id="lastCheck">Never</span><br>
+            <strong>Days since last backup:</strong> <span id="daysSince" style="color: #e53e3e; font-weight: bold;">Unknown</span>
+        </div>
+
+        <div class="buttons">
+            <button onclick="markBackedUp()">✅ I Just Backed Up!</button>
+            <button class="secondary" onclick="showInstructions()">📖 Show Instructions</button>
+        </div>
+
+        <div class="instructions" id="instructions" style="display: none;">
+            <h3>How to Backup Now:</h3>
+            <ol>
+                <li>Open <strong>PowerShell</strong></li>
+                <li>Navigate to: <code>cd C:\Users\DELL\Desktop\schoolPro</code></li>
+                <li>Run: <code>.\backup-database.ps1</code></li>
+                <li>Verify backup was created in <code>.\backups\</code> folder</li>
+                <li>Copy latest backup to USB or cloud storage</li>
+            </ol>
+            <p style="margin-top: 15px;">
+                <strong>Quick Tip:</strong> Bookmark this page as your browser homepage so you see this reminder daily!
+            </p>
+        </div>
+    </div>
+
+    <script>
+        function getDaysSinceBackup() {
+            const lastBackup = localStorage.getItem('lastBackup');
+            if (!lastBackup) return null;
+            const lastDate = new Date(lastBackup);
+            const now = new Date();
+            const diffTime = Math.abs(now - lastDate);
+            const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+            return diffDays;
+        }
+
+        function updateDisplay() {
+            const lastBackup = localStorage.getItem('lastBackup');
+            const lastCheckEl = document.getElementById('lastCheck');
+            const daysSinceEl = document.getElementById('daysSince');
+            
+            if (lastBackup) {
+                const date = new Date(lastBackup);
+                lastCheckEl.textContent = date.toLocaleString();
+                
+                const days = getDaysSinceBackup();
+                daysSinceEl.textContent = days === 0 ? 'Today ✅' : `${days} day${days > 1 ? 's' : ''} ago`;
+                
+                if (days === 0) {
+                    daysSinceEl.style.color = '#38a169';
+                } else if (days <= 3) {
+                    daysSinceEl.style.color = '#d69e2e';
+                } else {
+                    daysSinceEl.style.color = '#e53e3e';
+                }
+            } else {
+                lastCheckEl.textContent = 'Never';
+                daysSinceEl.textContent = 'No backup recorded';
+                daysSinceEl.style.color = '#e53e3e';
+            }
+        }
+
+        function markBackedUp() {
+            localStorage.setItem('lastBackup', new Date().toISOString());
+            updateDisplay();
+            alert('✅ Great! Backup recorded.\n\nDon\'t forget to:\n• Copy backup to USB drive\n• Upload to cloud storage');
+        }
+
+        function showInstructions() {
+            const inst = document.getElementById('instructions');
+            inst.style.display = inst.style.display === 'none' ? 'block' : 'none';
+        }
+
+        // Check on load
+        updateDisplay();
+        
+        // Check if it's been more than a day
+        const days = getDaysSinceBackup();
+        if (days === null || days >= 1) {
+            setTimeout(() => {
+                if (confirm('⚠️ It\'s been ' + (days || 'a long time') + ' since your last backup!\n\nWould you like to see backup instructions?')) {
+                    showInstructions();
+                }
+            }, 1000);
+        }
+    </script>
+</body>
+</html>

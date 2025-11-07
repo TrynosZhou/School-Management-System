@@ -1,0 +1,33 @@
+/* App-level styles (nav styles are scoped in NavBarComponent) */
+
+/* Global top banner */
+.top-banner{background:#0b53a5;color:#fff;margin-left:calc(50% - 50vw);margin-right:calc(50% - 50vw)}
+.top-banner__inner{padding:10px 16px}
+.top-banner__title{font-weight:800}
+
+/* Global navigation bar */
+.global-nav{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  padding:8px 16px;
+  background:#fff;
+  border-bottom:1px solid #eee;
+}
+.global-nav .home-link{
+  text-decoration:none;
+  color:#0b53a5;
+  font-weight:600;
+}
+.global-nav .right{display:flex;align-items:center;gap:10px;margin-left:auto}
+.global-nav .who{font-weight:600;color:#111827}
+.global-nav .logout-btn{
+  background:#1d4ed8;
+  color:#fff;
+  border:1px solid #1d4ed8;
+  border-radius:8px;
+  padding:6px 12px;
+  font-weight:700;
+  cursor:pointer;
+}

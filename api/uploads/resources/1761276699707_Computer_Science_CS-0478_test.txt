@@ -1,0 +1,11 @@
+# Computer Science Test (CS-0478)
+Class: 4 Gold
+Total Marks: 75 (assembled: 10)
+
+1. (5 marks) Define algorithm.
+
+2. (5 marks) Which is true?
+   A) A
+   B) B
+   C) C
+   D) D

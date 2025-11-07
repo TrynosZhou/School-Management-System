@@ -1,0 +1,12 @@
+[
+  { "id": "q1", "text": "Simplify: 3x + 5x - 2x.", "marks": 5, "topic": "Algebra" },
+  { "id": "q2", "text": "Solve for x: 2(x - 3) = 10.", "marks": 5, "topic": "Algebra" },
+  { "id": "q3", "text": "Find the area of a rectangle with length 12 cm and width 7 cm.", "marks": 5, "topic": "Mensuration" },
+  { "id": "q4", "text": "A shop gives a discount of 15% on a shirt marked at GH¢200. Find the selling price.", "marks": 10, "topic": "Commercial Arithmetic" },
+  { "id": "q5", "text": "Construct a frequency table from the following scores: 4, 6, 6, 7, 8, 8, 8, 9, 10, 10.", "marks": 10, "topic": "Statistics" },
+  { "id": "q6", "text": "Plot the point P(−2, 3) on the Cartesian plane and reflect it in the y-axis. State the coordinates of the image.", "marks": 5, "topic": "Geometry" },
+  { "id": "q7", "text": "Evaluate: 3/4 + 5/6, giving your answer in simplest form.", "marks": 5, "topic": "Fractions" },
+  { "id": "q8", "text": "The ratio of boys to girls in a class is 3:5. If there are 24 girls, how many students are in the class?", "marks": 10, "topic": "Ratio & Proportion" },
+  { "id": "q9", "text": "Expand and simplify: (x + 2)(x − 5).", "marks": 10, "topic": "Algebra" },
+  { "id": "q10", "text": "Convert 0.375 to a fraction in simplest form.", "marks": 10, "topic": "Decimals" }
+]

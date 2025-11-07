@@ -1,0 +1,29 @@
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: schoolpro-mysql
+    restart: unless-stopped
+    environment:
+      MYSQL_DATABASE: schoolpro
+      MYSQL_USER: schooluser
+      MYSQL_PASSWORD: schoolpass
+      MYSQL_ROOT_PASSWORD: rootpass
+    ports:
+      - "3310:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+    command: ["--default-authentication-plugin=mysql_native_password", "--character-set-server=utf8mb4", "--collation-server=utf8mb4_unicode_ci"]
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin:latest
+    container_name: schoolpro-phpmyadmin
+    restart: unless-stopped
+    depends_on:
+      - mysql
+    environment:
+      PMA_HOST: mysql
+      PMA_PORT: 3306
+      UPLOAD_LIMIT: 256M
+    ports:
+      - "8081:80"
+volumes:
+  mysql_data:

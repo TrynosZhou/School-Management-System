@@ -1,0 +1,153 @@
+/* Global base styles */
+:root {
+  --sp-bg: #f5f6fa;
+  --sp-card-bg: #ffffff;
+  --sp-border: #e5e7eb;
+  --sp-text: #111827;
+  --sp-muted: #6b7280;
+  --sp-primary: #1d4ed8; /* bootstrap-ish primary */
+  --sp-primary-50: #eff6ff;
+  /* Global button sizing */
+  --sp-btn-height: 42px;         /* choose the larger size */
+  --sp-btn-min-width: 160px;     /* choose the larger width */
+  --sp-btn-padding: 10px 16px;   /* consistent padding */
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+  color: var(--sp-text);
+  background: var(--sp-bg);
+}
+
+/* Layout helpers used across pages */
+.wrap {
+  max-width: 1100px;
+  margin: 24px auto;
+  padding: 0 12px;
+}
+
+.card {
+  background: var(--sp-card-bg);
+  border: 1px solid var(--sp-border);
+  border-radius: 10px;
+  padding: 16px;
+}
+
+.top, .toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+/* Bootstrap-like form styling */
+label {
+  display: block;
+  font-size: 12px;
+  color: var(--sp-muted);
+  margin: 6px 0 4px;
+  font-weight: 700;
+}
+
+input, select, textarea {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid var(--sp-border);
+  border-radius: 8px;
+  background: #fff;
+  outline: none;
+  transition: border-color .15s ease, box-shadow .15s ease;
+}
+
+input:focus, select:focus, textarea:focus {
+  border-color: var(--sp-primary);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--sp-primary) 20%, transparent);
+}
+
+/* Buttons */
+button, .btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: var(--sp-btn-padding);
+  border-radius: 8px;
+  border: 1px solid var(--sp-primary);
+  background: var(--sp-primary);
+  color: #fff;
+  cursor: pointer;
+  text-decoration: none;
+  font-weight: 600;
+  height: var(--sp-btn-height);
+  min-width: var(--sp-btn-min-width);
+  justify-content: center;
+  white-space: nowrap;
+}
+
+button:hover, .btn:hover {
+  filter: brightness(0.96);
+}
+
+button:disabled, .btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+button.secondary, .btn.secondary {
+  background: #fff;
+  color: var(--sp-primary);
+}
+
+/* Ensure component-level button rules do not shrink buttons */
+.toolbar button,
+.top button,
+.quick-actions button,
+.actions button,
+nav button,
+header button {
+  height: var(--sp-btn-height) !important;
+  min-width: var(--sp-btn-min-width) !important;
+  white-space: nowrap !important;
+}
+
+/* Tables */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #fff;
+}
+
+th, td {
+  border: 1px solid var(--sp-border);
+  padding: 8px 10px;
+  text-align: left;
+}
+
+thead th {
+  background: #f9fafb;
+}
+
+/* Links */
+a {
+  color: var(--sp-primary);
+}
+
+/* Dashboard-specific helpers (non-invasive) */
+.sidebar {
+  background: #fff;
+  border-right: 1px solid var(--sp-border);
+}
+
+.brand {
+  font-weight: 700;
+}
+
+/* Utility */
+.muted { color: var(--sp-muted); }
+
+/* You can add global styles to this file, and also import other style files */
