@@ -34,12 +34,22 @@ import { ExamsModule } from './exams/exams.module';
     }),
     ConfigModule.forRoot({ isGlobal: true }),
     TypeOrmModule.forRoot({
-      type: 'mysql',
-      host: process.env.DB_HOST || '127.0.0.1',
-      port: parseInt(process.env.DB_PORT || '3306', 10),
-      username: process.env.DB_USERNAME || process.env.DB_USER || 'schooluser',
-      password: process.env.DB_PASSWORD || process.env.DB_PASS || 'schoolpass',
-      database: process.env.DB_NAME || 'schooldb',
+      // Switch to Postgres for Render
+      type: 'postgres',
+      // Prefer a single DATABASE_URL if provided (e.g. from Render) otherwise fall back to individual vars
+      url: process.env.DATABASE_URL || undefined,
+      host: process.env.DATABASE_URL ? undefined : (process.env.DB_HOST || '127.0.0.1'),
+      port: process.env.DATABASE_URL ? undefined : parseInt(process.env.DB_PORT || '5432', 10),
+      username: process.env.DATABASE_URL ? undefined : (process.env.DB_USERNAME || process.env.DB_USER || 'postgres'),
+      password: process.env.DATABASE_URL ? undefined : (process.env.DB_PASSWORD || process.env.DB_PASS || 'postgres'),
+      database: process.env.DATABASE_URL ? undefined : (process.env.DB_NAME || 'schooldb'),
+      ssl: (() => {
+        const flag = (process.env.DB_SSL || '').toLowerCase();
+        if (flag === '1' || flag === 'true' || flag === 'yes') {
+          return { rejectUnauthorized: false } as any; // common for managed PG on Render
+        }
+        return false as any;
+      })(),
       entities: [User],
       synchronize: true,
       autoLoadEntities: true,
